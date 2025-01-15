@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLBB Mastery Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #181818; /* Darker background */
+            color: #eee;
+            line-height: 1.6; /* Improved readability */
+        }
+        nav {
+            background-color: #282828; /* Slightly lighter nav */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+        nav h1 {
+            margin: 0;
+        }
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s; /* Smooth color transition */
+        }
+        nav a:hover {
+            color: #00bcd4; /* Accent color on hover */
+        }
+        #hero-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 25px;
+        }
+        .hero-card {
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer; /* Indicate clickable */
+        }
+        .hero-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        .hero-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block; /* Prevents image from adding extra space */
+        }
+        .hero-card h2 {
+            padding: 15px;
+            margin: 0;
+            text-align: center;
+        }
+        #hero-details {
+            display: none;
+            padding: 25px;
+            background-color: #282828;
+            border-radius: 10px;
+            margin: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        #hero-details img {
+            max-width: 300px;
+            float: left;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+        .clear {
+            clear: both;
+        }
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                margin: 10px 0;
+            }
+            #hero-details img {
+                float: none;
+                max-width: 100%;
+                margin: 0 0 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>MLBB Mastery</h1>
+        <div>
+            <a href="#">Heroes</a>
+            <a href="#">Builds</a>
+            <a href="#">Tips & Tricks</a>
+        </div>
+    </nav>
+
+    <div id="hero-list"></div>
+
+    <div id="hero-details"></div>
+
+    <script>
+        const heroList = document.getElementById('hero-list');
+        const heroDetails = document.getElementById('hero-details');
+
+        const heroes = [
+            { name: "Layla", image: "https://static.wikia.nocookie.net/mobilelegends/images/0/07/Layla_Basic.jpg/revision/latest?cb=20171111084206", description: "Layla is a marksman hero who excels at dealing consistent damage from a safe distance. Her Malefic Bomb and Void Projectile provide excellent poke and zoning capabilities.", skills: ["Malefic Bomb", "Void Projectile", "Destructive Rush"] , builds: ["Swift Boots", "Endless Battle", "Berserker's Fury"]},
+            { name: "Miya", image: "https://static.wikia.nocookie.net/mobilelegends/images/d/d4/Miya_Moon_Shooter.jpg/revision/latest?cb=20171111084534", description: "Miya is a classic marksman known for her high attack speed and ability to quickly eliminate targets. Her ultimate, Turbo Stealth, allows her to become invisible and reposition herself for ambushes.", skills: ["Arrow of Eclipse", "Firing Shot", "Turbo Stealth"], builds: ["Swift Boots", "Windtalker", "Scarlet Phantom"] },
+            // Add more heroes here...
+        ];
+
+        heroes.forEach(hero => {
+            const card = document.createElement('div');
+            card.className = 'hero-card';
+            card.innerHTML = `
+                <img src="${hero.image}" alt="${hero.name}">
+                <h2>${hero.name}</h2>
+            `;
+            card.addEventListener('click', () => showHeroDetails(hero));
+            heroList.appendChild(card);
+        });
+
+        function showHeroDetails(hero) {
+            heroDetails.innerHTML = `
+                <h2>${hero.name}</h2>
+                <img src="${hero.image}" alt="${hero.name}">
+                <p>${hero.description}</p>
+                <h3>Skills:</h3>
+                <ul>
+                    ${hero.skills.map(skill => `<li>${skill}</li>`).join('')}
+                </ul>
+                <h3>Builds:</h3>
+                <ul>
+                ${hero.builds.map(build => `<li>${build}</li>`).join('')}
+                </ul>
+                <div class="clear"></div>
+            `;
+            heroDetails.style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top on details view
+        }
+    </script>
+
+</body>
+</html>
