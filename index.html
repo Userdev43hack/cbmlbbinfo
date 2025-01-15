@@ -8,29 +8,94 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { /* ... (Existing CSS styles) */ }
-        nav { /* ... */ }
-        #hero-list { /* ... */ }
-        .hero-card {
-            /* ... (Existing styles) */
-            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s; /* Add opacity transition */
+    
+</head>
+
+<body>
+    <nav>
+        <h1>MLBB Mastery</h1>
+        <div>
+            <a href="#">Heroes</a>
+            <a href="#">Builds</a>
+  <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #181818;
+            color: #eee;
+            line-height: 1.6;
         }
-        .hero-card:hover { /* ... */ }
-        .hero-card img { /* ... */ }
-        .hero-card h2 { /* ... */ }
-        .hero-details {
+
+        nav {
+            background-color: #282828;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+        #hero-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
+            gap: 20px; /* Reduced gap */
+            padding: 20px; /* Reduced padding */
+        }
+
+        .hero-card {
+            background-color: #333;
+            border-radius: 8px; /* Reduced border-radius */
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .hero-card:hover {
+            transform: scale(1.02); /* Reduced scale */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Reduced shadow */
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 200px; /* Reduced height */
+            object-fit: cover;
+            display: block;
+        }
+      .hero-details {
             /* ... (Existing styles) */
             transition: opacity 0.3s, transform 0.3s, visibility 0.3s; /* Add visibility transition */
             visibility: hidden; /* Initially hidden with visibility for smoother transition */
-        }
-        .hero-card:hover .hero-details {
+      }
+      .hero-card:hover .hero-details {
             opacity: 1;
             transform: translateY(0);
             visibility: visible; /* Show with visibility */
             pointer-events: auto;
         }
-        .mechanics-section { /* ... */ }
+        .mechanics-section {
+            padding: 20px; /* Reduced padding */
+            background-color: #282828;
+            border-radius: 10px;
+            margin: 20px; /* Reduced margin */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+        }
+      
         #mechanics-content {
             max-height: 0;
             overflow: hidden;
@@ -40,22 +105,104 @@
         #mechanics-content.show {
             max-height: 500px;
             opacity: 1; /* Fade in */
+                
+        #hero-dialog {
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #282828;
+            color: #eee;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            max-width: 90%; /* Responsive width */
+            margin: 20px auto;
+            animation: dialog-show 0.3s ease-in-out;
         }
-        #expand-mechanics { /* ... */ }
-        #expand-mechanics:hover { /* ... */ }
-        .card-tips { /* ... */ }
-        .card-tip { /* ... */ }
-        .card-tip i { /* ... */ }
-        @media (max-width: 768px) { /* ... */ }
-    </style>
-</head>
 
-<body>
-    <nav>
-        <h1>MLBB Mastery</h1>
-        <div>
-            <a href="#">Heroes</a>
-            <a href="#">Builds</a>
+        @keyframes dialog-show {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #close-dialog {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: #eee;
+        }        
+
+        #expand-mechanics {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 8px 16px; /* Reduced padding */
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #expand-mechanics:hover {
+            background-color: #0090a8;
+        }
+
+        .card-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Reduced gap */
+            margin-top: 15px; /* Reduced margin */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+        }
+
+        .card-tip {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            color: #ddd;
+        }
+
+        .card-tip i {
+            margin-right: 10px;
+            color: #00bcd4;
+            margin-top: 5px; /* Adjust vertical alignment of icon */
+        }
+
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            #hero-dialog {
+                max-width: 95%; /* Further adjust dialog width on smaller screens */
+            }
+            .card-tip {
+                flex-direction: column; /* Stack tip content vertically */
+                align-items: flex-start;
+            }
+
+            .card-tip i {
+                margin-bottom: 5px; /* Add space between icon and text */
+                margin-right: 0; /* Remove right margin */
+            }
+        }
+                </style>
+            
             <a href="#">Tips & Tricks</a>
             <a href="#">Gameplay Mechanics</a>
         </div>
