@@ -15,5 +15,5 @@
         "builds": ["...", "..."],
         "role": "Marksman"
     },
-    // ... more heroes
+    
 ]
