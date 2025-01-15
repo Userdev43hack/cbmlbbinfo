@@ -43,29 +43,28 @@
 
         #hero-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 25px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
+            gap: 20px; /* Reduced gap */
+            padding: 20px; /* Reduced padding */
         }
 
         .hero-card {
             background-color: #333;
-            border-radius: 10px;
+            border-radius: 8px; /* Reduced border-radius */
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+            transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
         }
 
         .hero-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            transform: scale(1.02); /* Reduced scale */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Reduced shadow */
         }
 
         .hero-card img {
             width: 100%;
-            height: 250px;
+            height: 200px; /* Reduced height */
             object-fit: cover;
             display: block;
         }
@@ -77,8 +76,8 @@
             background-color: #282828;
             color: #eee;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            max-width: 800px;
-            margin: auto;
+            max-width: 90%; /* Responsive width */
+            margin: 20px auto;
             animation: dialog-show 0.3s ease-in-out;
         }
 
@@ -106,11 +105,11 @@
         }
 
         .mechanics-section {
-            padding: 25px;
+            padding: 20px; /* Reduced padding */
             background-color: #282828;
             border-radius: 10px;
-            margin: 25px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            margin: 20px; /* Reduced margin */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
         }
 
         #mechanics-content {
@@ -127,7 +126,7 @@
             background-color: #00bcd4;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 16px; /* Reduced padding */
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
@@ -141,21 +140,47 @@
         .card-tips {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px; /* Reduced gap */
+            margin-top: 15px; /* Reduced margin */
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 15px;
         }
 
         .card-tip {
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Align items to the top */
             color: #ddd;
         }
 
         .card-tip i {
             margin-right: 10px;
             color: #00bcd4;
+            margin-top: 5px; /* Adjust vertical alignment of icon */
+        }
+
+        /* Mobile-Specific Styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            #hero-dialog {
+                max-width: 95%; /* Further adjust dialog width on smaller screens */
+            }
+            .card-tip {
+                flex-direction: column; /* Stack tip content vertically */
+                align-items: flex-start;
+            }
+
+            .card-tip i {
+                margin-bottom: 5px; /* Add space between icon and text */
+                margin-right: 0; /* Remove right margin */
+            }
         }
     </style>
 </head>
@@ -187,64 +212,64 @@
                     <i class="fas fa-eye"></i>
                     <div>
                         <h3>Bush Trick</h3>
-                        <p>When entering a bush, an eye appears on the health bar. If the eye appears slowly, an enemy is nearby in other bushes. If it appears quickly, there are no nearby enemies. This helps you quickly analyze enemy presence without risking entering other bushes. This is a very neat trick for lower ranks, but higher ranks generally know this.</p>
+                        <p>When entering a bush, an eye appears on the health bar. If the eye appears slowly, an enemy is nearby. If it appears quickly, no enemies are nearby. This helps analyze enemy presence without risking entering other bushes.</p>
                     </div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-hand-holding-heart"></i>
                     <div>
                         <h3>Early Game Jungle Assistance</h3>
-                        <p>If you're a mage, help your ally jungler at the start of the game to speed up their jungling. This benefits the jungler significantly. Then, consider visiting your gold lane teammate to increase their chances of securing an early kill.</p>
+                        <p>If you're a mage, help your ally jungler at the start to speed up their jungling. This benefits the jungler significantly. Then, consider visiting your gold lane teammate.</p>
                     </div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-route"></i>
                     <div>
                         <h3>Roaming Support</h3>
-                        <p>When roaming, prioritize helping your ally jungler (similar to the mage's role). Roaming in the gold lane and mid lane is often more impactful than focusing solely on experience as an EXP laner. A strong mindset for the EXP laner is important.</p>
+                        <p>When roaming, prioritize helping your ally jungler. Roaming in the gold and mid lanes is often more impactful than focusing solely on experience as an EXP laner.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         fetch('heroes.json')
             .then(response => response.json())
             .then(heroes => {
                 const heroList = document.getElementById('hero-list');
-                const heroDialog = document.getElementById('hero-dialog');
-                const heroDetails = document.getElementById('hero-details');
+                const heroDialog = document.getElementById('herodetails');
                 const closeDialogButton = document.getElementById('close-dialog');
                 const expandMechanicsButton = document.getElementById('expand-mechanics');
-                const mechanicsContent = document.getElementById('mechanics-content')
+                const mechanicsContent = document.getElementById('mechanics-content');
 
                 heroes.forEach(hero => {
                     const card = document.createElement('div');
                     card.className = 'hero-card';
                     card.innerHTML = `
-                <img src="<span class="math-inline">\{hero\.image\}" alt\="</span>{hero.name}">
-                <h2>${hero.name}</h2>
-            `;
+                        <img src="${hero.image}" alt="${hero.name}">
+                        <h2>${hero.name}</h2>
+                    `;
                     card.addEventListener('click', () => showHeroDetails(hero));
                     heroList.appendChild(card);
                 });
 
                 function showHeroDetails(hero) {
                     heroDetails.innerHTML = `
-                <h2><span class="math-inline">\{hero\.name\}</h2\>
-<img src\="</span>{hero.image}" alt="${hero.name}">
-                <p>${hero.description}</p>
-                <h3>Role: ${hero.role}</h3>
-                <h3>Skills:</h3>
-                <ul>
-                    ${hero.skills.map(skill => `<li>${skill}</li>`).join('')}
-                </ul>
-                <h3>Builds:</h3>
-                <ul>
-                    ${hero.builds.map(build => `<li>${build}</li>`).join('')}
-                </ul>
-                <div class="clear"></div>
-            `;
+                        <h2>${hero.name}</h2>
+                        <img src="${hero.image}" alt="${hero.name}">
+                        <p>${hero.description}</p>
+                        <h3>Role: ${hero.role}</h3>
+                        <h3>Skills:</h3>
+                        <ul>
+                            ${hero.skills.map(skill => `<li>${skill}</li>`).join('')}
+                        </ul>
+                        <h3>Builds:</h3>
+                        <ul>
+                            ${hero.builds.map(build => `<li>${build}</li>`).join('')}
+                        </ul>
+                        <div class="clear"></div>
+                    `;
                     heroDialog.showModal();
                 }
 
