@@ -1,7 +1,7 @@
 [
     {
         "name": "Layla",
-        "image": "images/Layla.jpeg",
+        "image": "images/layla.jpeg",
         "description": "Layla is a marksman...",
         "skills": ["...", "..."],
         "builds": ["...", "..."],
@@ -9,11 +9,11 @@
     },
     {
         "name": "Miya",
-        "image": "images/Miya.jpeg",
+        "image": "images/miya.jpeg",
         "description": "Miya is a marksman...",
         "skills": ["...", "..."],
         "builds": ["...", "..."],
         "role": "Marksman"
     },
     // ... more heroes
-]￼Enter
+]
