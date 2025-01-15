@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLBB Mastery Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: #181818; /* Darker background */
+            background-color: #181818;
             color: #eee;
-            line-height: 1.6; /* Improved readability */
+            line-height: 1.6;
         }
+
         nav {
             background-color: #282828; /* Slightly lighter nav */
             padding: 15px;
@@ -23,89 +25,103 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
         }
+
         nav h1 {
             margin: 0;
         }
+
         nav a {
             color: #eee;
             text-decoration: none;
             margin: 0 15px;
             transition: color 0.3s; /* Smooth color transition */
         }
+
         nav a:hover {
             color: #00bcd4; /* Accent color on hover */
         }
-        #hero-list {
+
+        .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             padding: 25px;
+            margin-bottom: 50px; /* Add some bottom margin */
         }
-        .hero-card {
+
+        .card {
             background-color: #333;
             border-radius: 10px;
+            padding: 20px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Stronger shadow */
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer; /* Indicate clickable */
         }
-        .hero-card:hover {
+
+        .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
         }
-        .hero-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block; /* Prevents image from adding extra space */
-        }
-        .hero-card h2 {
-            padding: 15px;
-            margin: 0;
+
+        .card h2 {
+            margin: 0 0 10px 0;
             text-align: center;
+            color: #fff;
         }
-        #hero-details {
-            display: none;
-            padding: 25px;
-            background-color: #282828;
-            border-radius: 10px;
-            margin: 25px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
+        .card p {
+            color: #ddd;
+            line-height: 1.6;
         }
-        #hero-details img {
-            max-width: 300px;
-            float: left;
-            margin-right: 20px;
-            border-radius: 8px;
+
+        .card-tips {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light border */
+            padding-top: 15px;
         }
-        .clear {
-            clear: both;
+
+        .card-tip {
+            display: flex;
+            align-items: center;
+            color: #ddd;
         }
+
+        .card-tip i {
+            margin-right: 10px;
+            color: #00bcd4;
+        }
+
         /* Mobile-friendly adjustments */
+
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
             nav a {
                 margin: 10px 0;
             }
-            #hero-details img {
-                float: none;
-                max-width: 100%;
-                margin: 0 0 20px 0;
+
+            .card-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body>
 
+<body>
     <nav>
         <h1>MLBB Mastery</h1>
         <div>
             <a href="#">Heroes</a>
             <a href="#">Builds</a>
             <a href="#">Tips & Tricks</a>
+            <a href="#">Gameplay Mechanics</a>
         </div>
     </nav>
 
@@ -113,13 +129,57 @@
 
     <div id="hero-details"></div>
 
+    <div class="card-container">
+        <div class="card">
+            <h2>Gameplay Mechanics Tips</h2>
+            <div class="card-tips">
+                <div class="card-tip">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <h3>Bush Trick</h3>
+                        <p>When entering a bush, an eye appears on the health bar. If the eye appears slowly, an enemy is nearby in other bushes. If it appears quickly, there are no nearby enemies. This helps you quickly analyze enemy presence without risking entering other bushes. This is a very neat trick for lower ranks, but higher ranks generally know this.</p>
+                    </div>
+                </div>
+                <div class="card-tip">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <div>
+                        <h3>Early Game Jungle Assistance</h3>
+                        <p>If you're a mage, help your ally jungler at the start of the game to speed up their jungling. This benefits the jungler significantly. Then, consider visiting your gold lane teammate to increase their chances of securing an early kill.</p>
+                    </div>
+                </div>
+                <div class="card-tip">
+                    <i class="fas fa-route"></i>
+                    <div>
+                        <h3>Roaming Support</h3>
+                        <p>When roaming, prioritize helping your ally jungler (similar to the mage's role). Roaming in the gold lane and mid lane is often more impactful than focusing solely on experience as an EXP laner. A strong mindset for the EXP laner is important.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const heroList = document.getElementById('hero-list');
         const heroDetails = document.getElementById('hero-details');
+        const cardContainer = document.querySelector('.card-container')
 
         const heroes = [
-            { name: "Layla", image: "https://static.wikia.nocookie.net/mobilelegends/images/0/07/Layla_Basic.jpg/revision/latest?cb=20171111084206", description: "Layla is a marksman hero who excels at dealing consistent damage from a safe distance. Her Malefic Bomb and Void Projectile provide excellent poke and zoning capabilities.", skills: ["Malefic Bomb", "Void Projectile", "Destructive Rush"] , builds: ["Swift Boots", "Endless Battle", "Berserker's Fury"]},
-            { name: "Miya", image: "https://static.wikia.nocookie.net/mobilelegends/images/d/d4/Miya_Moon_Shooter.jpg/revision/latest?cb=20171111084534", description: "Miya is a classic marksman known for her high attack speed and ability to quickly eliminate targets. Her ultimate, Turbo Stealth, allows her to become invisible and reposition herself for ambushes.", skills: ["Arrow of Eclipse", "Firing Shot", "Turbo Stealth"], builds: ["Swift Boots", "Windtalker", "Scarlet Phantom"] },
+            {
+                name: "Layla",
+                image: "images/layla.jpeg", // Local image path
+                description: "Layla is a marksman hero who excels at dealing consistent damage from a safe distance...",
+                skills: ["Malefic Bomb", "Void Projectile", "Destructive Rush"],
+                builds: ["Swift Boots", "Endless Battle", "Berserker's Fury"],
+                role: "Marksman"
+            },
+            {
+                name: "Miya",
+                image: "images/miya.jpeg", // Local image path
+                description: "Miya is a classic marksman known for her high attack speed and ability to quickly eliminate targets...",
+                skills: ["Arrow of Eclipse", "Firing Shot", "Turbo Stealth"],
+                builds: ["Swift Boots", "Windtalker", "Scarlet Phantom"],
+                role: "Marksman"
+            },
             // Add more heroes here...
         ];
 
@@ -139,20 +199,22 @@
                 <h2>${hero.name}</h2>
                 <img src="${hero.image}" alt="${hero.name}">
                 <p>${hero.description}</p>
+                <h3>Role: ${hero.role}</h3>
                 <h3>Skills:</h3>
                 <ul>
                     ${hero.skills.map(skill => `<li>${skill}</li>`).join('')}
                 </ul>
                 <h3>Builds:</h3>
                 <ul>
-                ${hero.builds.map(build => `<li>${build}</li>`).join('')}
+                    ${hero.builds.map(build => `<li>${build}</li>`).join('')}
                 </ul>
                 <div class="clear"></div>
             `;
             heroDetails.style.display = 'block';
-            window.scrollTo(0, 0); // Scroll to top on details view
+            window.scrollTo(0, 0);
         }
     </script>
-
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
