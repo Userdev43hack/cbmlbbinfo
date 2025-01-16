@@ -43,98 +43,76 @@
 
         #hero-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
-            gap: 20px; /* Reduced gap */
-            padding: 20px; /* Reduced padding */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
 
         .hero-card {
             background-color: #333;
-            border-radius: 8px; /* Reduced border-radius */
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
             cursor: pointer;
+            position: relative;
         }
 
         .hero-card:hover {
-            transform: scale(1.02); /* Reduced scale */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Reduced shadow */
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
 
         .hero-card img {
             width: 100%;
-            height: 200px; /* Reduced height */
+            height: 200px;
             object-fit: cover;
             display: block;
         }
 
         .hero-details {
-            /* ... (Existing styles) */
-            transition: opacity 0.3s, transform 0.3s, visibility 0.3s; /* Add visibility transition */
-            visibility: hidden; /* Initially hidden with visibility for smoother transition */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #eee;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            visibility: hidden;
+            pointer-events: none;
+            overflow-y: auto;
         }
 
         .hero-card:hover .hero-details {
             opacity: 1;
             transform: translateY(0);
-            visibility: visible; /* Show with visibility */
+            visibility: visible;
             pointer-events: auto;
         }
 
         .mechanics-section {
-            padding: 20px; /* Reduced padding */
+            padding: 20px;
             background-color: #282828;
             border-radius: 10px;
-            margin: 20px; /* Reduced margin */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
+            margin: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         #mechanics-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.5s; /* Add opacity transition */
-            opacity: 0; /* Initially hidden */
+            transition: max-height 0.5s ease-in-out, opacity 0.5s;
+            opacity: 0;
         }
 
         #mechanics-content.show {
             max-height: 500px;
-            opacity: 1; /* Fade in */
-        }
-
-        #hero-dialog {
-            border: none;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #282828;
-            color: #eee;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            max-width: 90%;
-            margin: 20px auto;
-            animation: dialog-show 0.3s ease-in-out;
-        }
-
-        @keyframes dialog-show {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        #close-dialog {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: #eee;
+            opacity: 1;
         }
 
         #expand-mechanics {
@@ -173,30 +151,31 @@
             margin-top: 5px;
         }
 
-        /* Circular Card Styles */
-        .circular-card {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
+        /* Edmon Card Styles */
+        .edmon-card {
             background-color: #333;
+            border-radius: 10px; /* Smooth edges */
+            overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            margin: 20px auto; /* Center the card */
+            margin: 20px auto;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            max-width: 300px; /* Set a max-width for the card */
         }
-        .circular-card:hover {
+
+        .edmon-card:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
         }
-        .circular-card img {
+
+        .edmon-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; /* Maintain aspect ratio */
             display: block;
         }
-        .circular-details {
+
+        .edmon-details {
             position: absolute;
             top: 0;
             left: 0;
@@ -211,21 +190,30 @@
             transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
             visibility: hidden;
             pointer-events: none;
+            overflow-y: auto;
         }
-        .circular-card:hover .circular-details {
+
+        .edmon-card:hover .edmon-details {
             opacity: 1;
             transform: translateY(0);
             visibility: visible;
             pointer-events: auto;
         }
 
-
-        /* Mobile-Specific Styles */
         @media (max-width: 768px) {
-            /* ... (Existing Media Query styles) */
-            .circular-card {
-                width: 150px;
-                height: 150px;
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+            #hero-list {
+                grid-template-columns: 1fr;
+            }
+            .edmon-card {
+                max-width: 90%;
             }
         }
     </style>
@@ -267,9 +255,9 @@
                 <ul><li>Swift Boots</li><li>Windtalker</li><li>Scarlet Phantom</li></ul>
             </div>
         </div>
-        <div class="circular-card">
-            <img src="edmon.jpg" alt="Edmon">
-            <div class="circular-details">
+        <div class="edmon-card">
+            <img src="edmon.jpeg" alt="Edmon">
+            <div class="edmon-details">
                 <h2>Meet Edmon</h2>
                 <p>An MLBB Player Isang Kupal Classmate nila Inigo at Aniel</p>
             </div>
@@ -283,15 +271,24 @@
             <div class="card-tips">
                 <div class="card-tip">
                     <i class="fas fa-eye"></i>
-                    <div><h3>Bush Trick</h3><p>When entering a bush, an eye appears...</p></div>
+                    <div>
+                        <h3>Bush Trick</h3>
+                        <p>When entering a bush, an eye appears on the health bar. If the eye appears slowly, an enemy is nearby. If it appears quickly, no enemies are nearby. This helps analyze enemy presence without risking entering other bushes.</p>
+                    </div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-hand-holding-heart"></i>
-                    <div><h3>Early Game Jungle Assistance</h3><p>If you're a mage, help your ally jungler...</p></div>
+                    <div>
+                        <h3>Early Game Jungle Assistance</h3>
+                        <p>If you're a mage, help your ally jungler at the start to speed up their jungling. This benefits the jungler significantly. Then, consider visiting your gold lane teammate.</p>
+                    </div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-route"></i>
-                    <div><h3>Roaming Support</h3><p>When roaming, prioritize helping your ally jungler...</p></div>
+                    <div>
+                        <h3>Roaming Support</h3>
+                        <p>When roaming, prioritize helping your ally jungler. Roaming in the gold and mid lanes is often more impactful than focusing solely on experience as an EXP laner.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,6 +308,11 @@
             card.addEventListener('click', () => {
                 card.classList.toggle('clicked');
             });
+        });
+
+        const edmonCard = document.querySelector('.edmon-card');
+        edmonCard.addEventListener('click', () => {
+             edmonCard.classList.toggle('clicked');
         });
     </script>
     <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
