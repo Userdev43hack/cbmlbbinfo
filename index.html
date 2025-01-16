@@ -8,16 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    
-</head>
-
-<body>
-    <nav>
-        <h1>MLBB Mastery</h1>
-        <div>
-            <a href="#">Heroes</a>
-            <a href="#">Builds</a>
-  <style>
+    <style>
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -77,17 +68,20 @@
             object-fit: cover;
             display: block;
         }
-      .hero-details {
+
+        .hero-details {
             /* ... (Existing styles) */
             transition: opacity 0.3s, transform 0.3s, visibility 0.3s; /* Add visibility transition */
             visibility: hidden; /* Initially hidden with visibility for smoother transition */
-      }
-      .hero-card:hover .hero-details {
+        }
+
+        .hero-card:hover .hero-details {
             opacity: 1;
             transform: translateY(0);
             visibility: visible; /* Show with visibility */
             pointer-events: auto;
         }
+
         .mechanics-section {
             padding: 20px; /* Reduced padding */
             background-color: #282828;
@@ -95,17 +89,19 @@
             margin: 20px; /* Reduced margin */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
         }
-      
+
         #mechanics-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, opacity 0.5s; /* Add opacity transition */
             opacity: 0; /* Initially hidden */
         }
+
         #mechanics-content.show {
             max-height: 500px;
             opacity: 1; /* Fade in */
-                
+        }
+
         #hero-dialog {
             border: none;
             border-radius: 10px;
@@ -113,7 +109,7 @@
             background-color: #282828;
             color: #eee;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            max-width: 90%; /* Responsive width */
+            max-width: 90%;
             margin: 20px auto;
             animation: dialog-show 0.3s ease-in-out;
         }
@@ -139,13 +135,13 @@
             background: transparent;
             border: none;
             color: #eee;
-        }        
+        }
 
         #expand-mechanics {
             background-color: #00bcd4;
             color: white;
             border: none;
-            padding: 8px 16px; /* Reduced padding */
+            padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
@@ -159,50 +155,88 @@
         .card-tips {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Reduced gap */
-            margin-top: 15px; /* Reduced margin */
+            gap: 10px;
+            margin-top: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             padding-top: 15px;
         }
 
         .card-tip {
             display: flex;
-            align-items: flex-start; /* Align items to the top */
+            align-items: flex-start;
             color: #ddd;
         }
 
         .card-tip i {
             margin-right: 10px;
             color: #00bcd4;
-            margin-top: 5px; /* Adjust vertical alignment of icon */
+            margin-top: 5px;
         }
+
+        /* Circular Card Styles */
+        .circular-card {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            margin: 20px auto; /* Center the card */
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .circular-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        .circular-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .circular-details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #eee;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .circular-card:hover .circular-details {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
 
         /* Mobile-Specific Styles */
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            nav a {
-                margin: 10px 0;
-            }
-
-            #hero-dialog {
-                max-width: 95%; /* Further adjust dialog width on smaller screens */
-            }
-            .card-tip {
-                flex-direction: column; /* Stack tip content vertically */
-                align-items: flex-start;
-            }
-
-            .card-tip i {
-                margin-bottom: 5px; /* Add space between icon and text */
-                margin-right: 0; /* Remove right margin */
+            /* ... (Existing Media Query styles) */
+            .circular-card {
+                width: 150px;
+                height: 150px;
             }
         }
-                </style>
-            
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1>MLBB Mastery</h1>
+        <div>
+            <a href="#">Heroes</a>
+            <a href="#">Builds</a>
             <a href="#">Tips & Tricks</a>
             <a href="#">Gameplay Mechanics</a>
         </div>
@@ -213,7 +247,7 @@
             <img src="images/layla.jpeg" alt="Layla">
             <h2>Layla</h2>
             <div class="hero-details">
-               <p>Layla is a marksman hero who excels at dealing consistent damage from a safe distance...</p>
+                <p>Layla is a marksman hero who excels at dealing consistent damage from a safe distance...</p>
                 <h3>Role: Marksman</h3>
                 <h3>Skills:</h3>
                 <ul><li>Malefic Bomb</li><li>Void Projectile</li><li>Destructive Rush</li></ul>
@@ -233,6 +267,13 @@
                 <ul><li>Swift Boots</li><li>Windtalker</li><li>Scarlet Phantom</li></ul>
             </div>
         </div>
+        <div class="circular-card">
+            <img src="edmon.jpg" alt="Edmon">
+            <div class="circular-details">
+                <h2>Meet Edmon</h2>
+                <p>An MLBB Player Isang Kupal Classmate nila Inigo at Aniel</p>
+            </div>
+        </div>
     </div>
 
     <div class="mechanics-section">
@@ -242,24 +283,16 @@
             <div class="card-tips">
                 <div class="card-tip">
                     <i class="fas fa-eye"></i>
-                    <div>
-                        <h3>Bush Trick</h3>
-                        <p>When entering a bush, an eye appears on the health bar. If the eye appears slowly, an enemy is nearby. If it appears quickly, no enemies are nearby. This helps analyze enemy presence without risking entering other bushes.</p>
-                    </div>
+                    <div><h3>Bush Trick</h3><p>When entering a bush, an eye appears...</p></div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-hand-holding-heart"></i>
-                    <div>
-                        <h3>Early Game Jungle Assistance</h3>
-                        <p>If you're a mage, help your ally jungler at the start to speed up their jungling. This benefits the jungler significantly. Then, consider visiting your gold lane teammate.</p>
-                    </div>
+                    <div><h3>Early Game Jungle Assistance</h3><p>If you're a mage, help your ally jungler...</p></div>
                 </div>
                 <div class="card-tip">
                     <i class="fas fa-route"></i>
-                    <div>
-                        <h3>Roaming Support</h3>
-                        <p>When roaming, prioritize helping your ally jungler. Roaming in the gold and mid lanes is often more impactful than focusing solely on experience as an EXP laner.</p>
-                    </div>
+                    <div><h3>Roaming Support</h3><p>When roaming, prioritize helping your ally jungler...</p></div>
+                </div>
             </div>
         </div>
     </div>
@@ -276,7 +309,7 @@
 
         heroCards.forEach(card => {
             card.addEventListener('click', () => {
-                card.classList.toggle('clicked'); // Add or remove clicked class
+                card.classList.toggle('clicked');
             });
         });
     </script>
